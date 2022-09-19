@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <!-- Rulesets -->
+  <PropertyGroup Condition="'$(CodeAnalysisRuleSet)' == '' OR '$(CodeAnalysisRuleSet)' == 'MinimumRecommendedRules.ruleset'">
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Shipping.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+</Project>
