@@ -32,6 +32,8 @@ public class NugetConfigParser
         foreach (XmlNode node in nodes)
         {
             NugetFeedDefinition feedDefinition = new(node.Attributes["key"].Value, node.Attributes["value"].Value);
+
+            // TODO: this queries feeds serially, we can possibly parallelise this
             feedDefinition.SearchQueryServiceEndpoint = await LoadSearchEndpointAsync(feedDefinition.Url);
 
             list.Add(feedDefinition);

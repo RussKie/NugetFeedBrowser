@@ -1,4 +1,4 @@
-﻿namespace DarcUI
+﻿namespace NugetFeedBrowser
 {
     partial class MainForm
     {
@@ -28,107 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ToolStripMenuItem groupByToolStripMenuItem;
-            System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.propertyGrid1 = new DarcUI.AddRemovePropertyGrid();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.groupByOption1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupByOption2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPageSubscriptions = new System.Windows.Forms.TabPage();
+            this.tabPageFeeds = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNuGetConfigBrowse = new System.Windows.Forms.Button();
+            this.lblNuGetConfigPath = new System.Windows.Forms.Label();
+            this.txtNuGetConfigPath = new System.Windows.Forms.TextBox();
+            this.nuGetFeedBrowserControl = new NugetFeedBrowser.NuGetFeedBrowserControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbtnRefresh = new System.Windows.Forms.ToolStripButton();
-            groupByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabPageSubscriptions.SuspendLayout();
+            this.tabPageFeeds.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupByToolStripMenuItem
-            // 
-            groupByToolStripMenuItem.Enabled = false;
-            groupByToolStripMenuItem.Name = "groupByToolStripMenuItem";
-            groupByToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
-            groupByToolStripMenuItem.Text = "Group by";
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(257, 6);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.propertyGrid1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 8);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 451F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(737, 451);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(371, 3);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(363, 445);
-            this.propertyGrid1.TabIndex = 2;
-            this.propertyGrid1.NewClicked += new System.EventHandler(this.propertyGrid1_NewClicked);
-            this.propertyGrid1.DeleteClicked += new System.EventHandler(this.propertyGrid1_DeleteClicked);
-            this.propertyGrid1.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.propertyGrid1_PropertyValueChanged);
-            // 
-            // treeView1
-            // 
-            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.HideSelection = false;
-            this.treeView1.Location = new System.Drawing.Point(3, 3);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(362, 445);
-            this.treeView1.TabIndex = 4;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            groupByToolStripMenuItem,
-            toolStripMenuItem1,
-            this.groupByOption1,
-            this.groupByOption2});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(261, 76);
-            // 
-            // groupByOption1
-            // 
-            this.groupByOption1.Checked = true;
-            this.groupByOption1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.groupByOption1.Name = "groupByOption1";
-            this.groupByOption1.Size = new System.Drawing.Size(260, 22);
-            this.groupByOption1.Text = "Channel > Source > Repo > Branch";
-            this.groupByOption1.Click += new System.EventHandler(this.groupByOption1_Click);
-            // 
-            // groupByOption2
-            // 
-            this.groupByOption2.Name = "groupByOption2";
-            this.groupByOption2.Size = new System.Drawing.Size(260, 22);
-            this.groupByOption2.Text = "Channel > Repo > Branch > Source";
-            this.groupByOption2.Click += new System.EventHandler(this.groupByOption2_Click);
-            // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPageSubscriptions);
+            this.tabControl.Controls.Add(this.tabPageFeeds);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.ItemSize = new System.Drawing.Size(58, 32);
             this.tabControl.Location = new System.Drawing.Point(8, 25);
@@ -137,16 +54,79 @@
             this.tabControl.Size = new System.Drawing.Size(761, 507);
             this.tabControl.TabIndex = 0;
             // 
-            // tabPageSubscriptions
+            // tabPageFeeds
             // 
-            this.tabPageSubscriptions.Controls.Add(this.tableLayoutPanel1);
-            this.tabPageSubscriptions.Location = new System.Drawing.Point(4, 36);
-            this.tabPageSubscriptions.Name = "tabPageSubscriptions";
-            this.tabPageSubscriptions.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPageSubscriptions.Size = new System.Drawing.Size(753, 467);
-            this.tabPageSubscriptions.TabIndex = 0;
-            this.tabPageSubscriptions.Text = "Subscriptions";
-            this.tabPageSubscriptions.UseVisualStyleBackColor = true;
+            this.tabPageFeeds.Controls.Add(this.tableLayoutPanel1);
+            this.tabPageFeeds.Location = new System.Drawing.Point(4, 36);
+            this.tabPageFeeds.Name = "tabPageFeeds";
+            this.tabPageFeeds.Padding = new System.Windows.Forms.Padding(8);
+            this.tabPageFeeds.Size = new System.Drawing.Size(753, 467);
+            this.tabPageFeeds.TabIndex = 0;
+            this.tabPageFeeds.Text = "NuGet Feeds";
+            this.tabPageFeeds.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.btnNuGetConfigBrowse, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblNuGetConfigPath, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtNuGetConfigPath, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.nuGetFeedBrowserControl, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 8);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(737, 451);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // btnNuGetConfigBrowse
+            // 
+            this.btnNuGetConfigBrowse.AutoSize = true;
+            this.btnNuGetConfigBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnNuGetConfigBrowse.Location = new System.Drawing.Point(708, 3);
+            this.btnNuGetConfigBrowse.Name = "btnNuGetConfigBrowse";
+            this.btnNuGetConfigBrowse.Size = new System.Drawing.Size(26, 25);
+            this.btnNuGetConfigBrowse.TabIndex = 2;
+            this.btnNuGetConfigBrowse.Text = "...";
+            this.btnNuGetConfigBrowse.UseVisualStyleBackColor = true;
+            this.btnNuGetConfigBrowse.Click += new System.EventHandler(this.btnNuGetConfigBrowse_Click);
+            // 
+            // lblNuGetConfigPath
+            // 
+            this.lblNuGetConfigPath.AutoSize = true;
+            this.lblNuGetConfigPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNuGetConfigPath.Location = new System.Drawing.Point(3, 0);
+            this.lblNuGetConfigPath.Name = "lblNuGetConfigPath";
+            this.lblNuGetConfigPath.Size = new System.Drawing.Size(116, 31);
+            this.lblNuGetConfigPath.TabIndex = 0;
+            this.lblNuGetConfigPath.Text = "Path to nuget.config";
+            this.lblNuGetConfigPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNuGetConfigPath
+            // 
+            this.txtNuGetConfigPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNuGetConfigPath.Location = new System.Drawing.Point(125, 3);
+            this.txtNuGetConfigPath.Name = "txtNuGetConfigPath";
+            this.txtNuGetConfigPath.ReadOnly = true;
+            this.txtNuGetConfigPath.Size = new System.Drawing.Size(577, 23);
+            this.txtNuGetConfigPath.TabIndex = 1;
+            // 
+            // nuGetFeedBrowserControl
+            // 
+            this.nuGetFeedBrowserControl.AutoSize = true;
+            this.nuGetFeedBrowserControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.SetColumnSpan(this.nuGetFeedBrowserControl, 3);
+            this.nuGetFeedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nuGetFeedBrowserControl.Enabled = false;
+            this.nuGetFeedBrowserControl.Location = new System.Drawing.Point(3, 34);
+            this.nuGetFeedBrowserControl.Name = "nuGetFeedBrowserControl";
+            this.nuGetFeedBrowserControl.Size = new System.Drawing.Size(731, 414);
+            this.nuGetFeedBrowserControl.TabIndex = 3;
             // 
             // toolStrip1
             // 
@@ -162,7 +142,7 @@
             // 
             this.tsbtnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnRefresh.Name = "tsbtnRefresh";
-            this.tsbtnRefresh.Size = new System.Drawing.Size(66, 22);
+            this.tsbtnRefresh.Size = new System.Drawing.Size(50, 22);
             this.tsbtnRefresh.Text = "&Refresh";
             this.tsbtnRefresh.Click += new System.EventHandler(this.tsbtnRefresh_Click);
             // 
@@ -176,11 +156,11 @@
             this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(8, 0, 8, 8);
-            this.Text = "Darc UI";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.Text = "NuGet Feed Browser";
             this.tabControl.ResumeLayout(false);
-            this.tabPageSubscriptions.ResumeLayout(false);
+            this.tabPageFeeds.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -191,15 +171,14 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPageSubscriptions;
-        private AddRemovePropertyGrid propertyGrid1;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TabPage tabPageFeeds;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbtnRefresh;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem groupByOption1;
-        private System.Windows.Forms.ToolStripMenuItem groupByOption2;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button btnNuGetConfigBrowse;
+        private Label lblNuGetConfigPath;
+        private TextBox txtNuGetConfigPath;
+        private NuGetFeedBrowserControl nuGetFeedBrowserControl;
     }
 }
 

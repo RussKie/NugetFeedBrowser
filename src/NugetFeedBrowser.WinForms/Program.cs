@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using Microsoft.VisualStudio.Threading;
 using NugetFeedBrowser.Shared;
 
-namespace DarcUI
+namespace NugetFeedBrowser
 {
     public static class Program
     {
@@ -27,10 +27,7 @@ namespace DarcUI
                 Application.ThreadException += (s, e) => Report(e.Exception, isTerminating: false);
             }
 
-            //Application.Run(new MainForm());
-
-            var parser = new NugetConfigParser(@"D:\Development\dotnet-winforms\NuGet.config");
-            parser.LoadAsync().GetAwaiter().GetResult();
+            Application.Run(new MainForm());
         }
 
         private static void Report(Exception exception, bool isTerminating)
