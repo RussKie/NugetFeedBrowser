@@ -11,7 +11,6 @@ namespace NugetFeedBrowser
     public partial class MainForm : Form
     {
         private static readonly NugetConfigParser s_nugetConfigParser = new();
-        private readonly ImageList _imageList = new ImageList();
         private readonly WaitSpinner _waitSpinner;
         private bool _operationInProgress;
 
@@ -19,23 +18,11 @@ namespace NugetFeedBrowser
         {
             InitializeComponent();
 
-            _imageList.Images.Add(new Bitmap(1, 1)); // default
-            //_imageList.Images.Add(Properties.Resources.arrow_join); // target
-            //_imageList.Images.Add(Properties.Resources.arrow_split); // source
-            //_imageList.Images.Add(Properties.Resources.branch_document); // branch
-            //_imageList.Images.Add(Properties.Resources.block); // channel
-
             _waitSpinner = new WaitSpinner
             {
                 BackColor = SystemColors.Window,
-                //Visible = false,
-                Size = new Size(50, 50) // DpiUtil.Scale(new Size(50, 50))
+                Size = new Size(50, 50)
             };
-
-
-            //var parser = new NugetConfigParser(@"D:\Development\dotnet-winforms\NuGet.config");
-            //parser.LoadAsync().GetAwaiter().GetResult();
-
 
             Text = Application.ProductName;
         }
@@ -71,19 +58,17 @@ namespace NugetFeedBrowser
                 }
                 finally
                 {
-                    hostControl.Invoke((Action)(() =>
+                    hostControl.Invoke(() =>
                     {
                         onCompleteMethod?.Invoke();
                         EndUIOperation();
-                    }));
+                    });
                 }
             });
 
             void BeginUIOperation()
             {
                 _operationInProgress = true;
-                tsbtnRefresh.Enabled = false;
-                tabControl.Enabled = false;
                 ShowSpinner(visible: true, hostControl);
             }
 
@@ -91,8 +76,6 @@ namespace NugetFeedBrowser
             {
                 _operationInProgress = false;
                 ShowSpinner(visible: false);
-                tabControl.Enabled = true;
-                tsbtnRefresh.Enabled = true;
             }
 
             void ShowSpinner(bool visible, Control? hostControl = null)
@@ -126,19 +109,27 @@ namespace NugetFeedBrowser
                 RestoreDirectory = true,
             };
 
-            if (dialog.ShowDialog(this) == DialogResult.OK)
+            if (dialog.ShowDialog(this) != DialogResult.OK)
             {
-                txtNuGetConfigPath.Text = dialog.FileName;
+                return;
+            }
 
-                IReadOnlyList<NugetFeedDefinition>? nugetFeedDefinitions = null;
-                await InvokeAsync(nuGetFeedBrowserControl,
-                    async () =>
+            txtNuGetConfigPath.Text = dialog.FileName;
+
+            IReadOnlyList<NugetFeedDefinition>? nugetFeedDefinitions = null;
+            await InvokeAsync(nuGetFeedBrowserControl,
+                async () =>
+                {
+                    nuGetFeedBrowserControl.Invoke(() =>
                     {
                         nuGetFeedBrowserControl.Enabled = false;
+                    });
 
-                        nugetFeedDefinitions = await s_nugetConfigParser.LoadAsync(dialog.FileName);
-                    },
-                    () =>
+                    nugetFeedDefinitions = await s_nugetConfigParser.LoadAsync(dialog.FileName);
+                },
+                () =>
+                {
+                    nuGetFeedBrowserControl.Invoke(() =>
                     {
                         nuGetFeedBrowserControl.BindFeeds(nugetFeedDefinitions);
 
@@ -147,7 +138,7 @@ namespace NugetFeedBrowser
                             nuGetFeedBrowserControl.Enabled = true;
                         }
                     });
-            }
+                });
         }
     }
 }

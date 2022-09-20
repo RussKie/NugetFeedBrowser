@@ -13,6 +13,9 @@ public record NugetFeedDefinition
 
     public string Name { get; }
     public string Url { get; }
-    public string? SearchQueryServiceEndpoint { get; set; }
 
+    public bool IsSupported { get; set; } = true;
+
+    public string? SearchQueryServiceEndpoint { get; set; }
+    public string? WebGalleryUri { get; set; }
 }

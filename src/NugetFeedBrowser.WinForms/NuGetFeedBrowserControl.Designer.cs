@@ -33,7 +33,7 @@ namespace NugetFeedBrowser
         {
             this.txtNuGetPackageName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvSearchResults = new System.Windows.Forms.ListView();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblNuGetPackageName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -53,7 +53,7 @@ namespace NugetFeedBrowser
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lvSearchResults, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNuGetPackageName, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNuGetPackageName, 1, 0);
@@ -66,15 +66,24 @@ namespace NugetFeedBrowser
             this.tableLayoutPanel1.Size = new System.Drawing.Size(801, 544);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // listView1
+            // lvSearchResults
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.listView1, 3);
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(3, 32);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(795, 509);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.lvSearchResults, 3);
+            this.lvSearchResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvSearchResults.Location = new System.Drawing.Point(3, 32);
+            this.lvSearchResults.MultiSelect = false;
+            this.lvSearchResults.Name = "lvSearchResults";
+            this.lvSearchResults.OwnerDraw = true;
+            this.lvSearchResults.ShowItemToolTips = true;
+            this.lvSearchResults.Size = new System.Drawing.Size(795, 509);
+            this.lvSearchResults.TabIndex = 3;
+            this.lvSearchResults.TileSize = new System.Drawing.Size(300, 64);
+            this.lvSearchResults.UseCompatibleStateImageBehavior = false;
+            this.lvSearchResults.View = System.Windows.Forms.View.Tile;
+            this.lvSearchResults.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.lvSearchResults_DrawItem);
+            this.lvSearchResults.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvSearchResults_MouseDoubleClick);
+            this.lvSearchResults.MouseLeave += new System.EventHandler(this.lvSearchResults_MouseLeave);
+            this.lvSearchResults.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvSearchResults_MouseMove);
             // 
             // btnSearch
             // 
@@ -84,6 +93,7 @@ namespace NugetFeedBrowser
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblNuGetPackageName
             // 
@@ -101,6 +111,7 @@ namespace NugetFeedBrowser
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.DoubleBuffered = true;
             this.Name = "NuGetFeedBrowserControl";
             this.Size = new System.Drawing.Size(801, 544);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -113,7 +124,7 @@ namespace NugetFeedBrowser
 
         private TextBox txtNuGetPackageName;
         private TableLayoutPanel tableLayoutPanel1;
-        private ListView listView1;
+        private ListView lvSearchResults;
         private Button btnSearch;
         private Label lblNuGetPackageName;
     }

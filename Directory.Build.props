@@ -9,7 +9,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-    <Product>Darc UI</Product>
+    <Product>DevDiv NuGet Feed Browser</Product>
   </PropertyGroup>
 
   <PropertyGroup>

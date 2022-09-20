@@ -5,11 +5,11 @@ using Newtonsoft.Json;
 
 namespace NugetFeedBrowser.Shared.Descriptors;
 
-internal record IndexJsonResourceDescriptor
+// https://learn.microsoft.com/nuget/api/search-query-service-resource
+public record PackageDataVersionDescriptor
 {
     [JsonProperty(PropertyName = "@id")]
     public string Id { get; set; } = null!;
-    [JsonProperty(PropertyName = "@type")]
-    public string Type { get; set; } = null!;
-    public string? Label { get; set; }
+    public string Version { get; set; } = null!;
+    public int Downloads { get; set; }
 }
