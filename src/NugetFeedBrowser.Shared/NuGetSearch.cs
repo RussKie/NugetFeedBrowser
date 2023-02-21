@@ -38,8 +38,15 @@ public class NuGetSearch
                         return;
                     }
 
-                    var imageByteArray = await Global.HttpClient.GetByteArrayAsync(item.IconUrl);
-                    item.Icon = Image.FromStream(new MemoryStream(imageByteArray));
+                    try
+                    {
+                        byte[] imageByteArray = await Global.HttpClient.GetByteArrayAsync(item.IconUrl);
+                        item.Icon = Image.FromStream(new MemoryStream(imageByteArray));
+                    }
+                    catch
+                    {
+                        item.Icon = null;
+                    }
                 }));
 
                 await Task.WhenAll(tasks);
