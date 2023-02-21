@@ -2,9 +2,8 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.Diagnostics;
+using Newtonsoft.Json;
 using NugetFeedBrowser.Shared;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace NugetFeedBrowser
 {
@@ -139,6 +138,37 @@ namespace NugetFeedBrowser
                         }
                     });
                 });
+        }
+
+        private async void btnExtractPat_Click(object sender, EventArgs e)
+        {
+            Global.SetAccessToken(null);
+
+            ExecutionResult? executionResult = default;
+            try
+            {
+                Executable azureClient = new("az.bat");
+                executionResult = await azureClient.GetOutputAsync("account get-access-token");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            if (executionResult is null || executionResult.ExitCode != 0)
+            {
+                MessageBox.Show("Failed to retrieve access token. Is Azure CLI installed and configured?");
+                return;
+            }
+
+            AzAccessToken descriptor = JsonConvert.DeserializeObject<AzAccessToken>(executionResult.Output)!;
+            Global.SetAccessToken(descriptor.AccessToken);
+        }
+
+        private record AzAccessToken
+        {
+            public string? AccessToken { get; set; }
         }
     }
 }

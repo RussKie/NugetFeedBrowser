@@ -28,91 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnNuGetConfigBrowse = new System.Windows.Forms.Button();
-            this.lblNuGetConfigPath = new System.Windows.Forms.Label();
-            this.txtNuGetConfigPath = new System.Windows.Forms.TextBox();
-            this.nuGetFeedBrowserControl = new NugetFeedBrowser.NuGetFeedBrowserControl();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            btnNuGetConfigBrowse = new Button();
+            lblNuGetConfigPath = new Label();
+            txtNuGetConfigPath = new TextBox();
+            nuGetFeedBrowserControl = new NuGetFeedBrowserControl();
+            btnExtractPat = new Button();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.btnNuGetConfigBrowse, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblNuGetConfigPath, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtNuGetConfigPath, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.nuGetFeedBrowserControl, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 8);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(761, 524);
-            this.tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel1.Controls.Add(btnNuGetConfigBrowse, 2, 0);
+            tableLayoutPanel1.Controls.Add(lblNuGetConfigPath, 0, 0);
+            tableLayoutPanel1.Controls.Add(txtNuGetConfigPath, 1, 0);
+            tableLayoutPanel1.Controls.Add(nuGetFeedBrowserControl, 0, 1);
+            tableLayoutPanel1.Controls.Add(btnExtractPat, 3, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(8, 8);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(761, 524);
+            tableLayoutPanel1.TabIndex = 0;
             // 
             // btnNuGetConfigBrowse
             // 
-            this.btnNuGetConfigBrowse.AutoSize = true;
-            this.btnNuGetConfigBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnNuGetConfigBrowse.Location = new System.Drawing.Point(732, 3);
-            this.btnNuGetConfigBrowse.Name = "btnNuGetConfigBrowse";
-            this.btnNuGetConfigBrowse.Size = new System.Drawing.Size(26, 25);
-            this.btnNuGetConfigBrowse.TabIndex = 2;
-            this.btnNuGetConfigBrowse.Text = "...";
-            this.btnNuGetConfigBrowse.UseVisualStyleBackColor = true;
-            this.btnNuGetConfigBrowse.Click += new System.EventHandler(this.btnNuGetConfigBrowse_Click);
+            btnNuGetConfigBrowse.AutoSize = true;
+            btnNuGetConfigBrowse.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnNuGetConfigBrowse.Location = new Point(661, 3);
+            btnNuGetConfigBrowse.Name = "btnNuGetConfigBrowse";
+            btnNuGetConfigBrowse.Size = new Size(26, 25);
+            btnNuGetConfigBrowse.TabIndex = 2;
+            btnNuGetConfigBrowse.Text = "...";
+            btnNuGetConfigBrowse.UseVisualStyleBackColor = true;
+            btnNuGetConfigBrowse.Click += btnNuGetConfigBrowse_Click;
             // 
             // lblNuGetConfigPath
             // 
-            this.lblNuGetConfigPath.AutoSize = true;
-            this.lblNuGetConfigPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNuGetConfigPath.Location = new System.Drawing.Point(3, 0);
-            this.lblNuGetConfigPath.Name = "lblNuGetConfigPath";
-            this.lblNuGetConfigPath.Size = new System.Drawing.Size(116, 31);
-            this.lblNuGetConfigPath.TabIndex = 0;
-            this.lblNuGetConfigPath.Text = "Path to nuget.config";
-            this.lblNuGetConfigPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblNuGetConfigPath.AutoSize = true;
+            lblNuGetConfigPath.Dock = DockStyle.Fill;
+            lblNuGetConfigPath.Location = new Point(3, 0);
+            lblNuGetConfigPath.Name = "lblNuGetConfigPath";
+            lblNuGetConfigPath.Size = new Size(116, 31);
+            lblNuGetConfigPath.TabIndex = 0;
+            lblNuGetConfigPath.Text = "Path to nuget.config";
+            lblNuGetConfigPath.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // txtNuGetConfigPath
             // 
-            this.txtNuGetConfigPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNuGetConfigPath.Location = new System.Drawing.Point(125, 3);
-            this.txtNuGetConfigPath.Name = "txtNuGetConfigPath";
-            this.txtNuGetConfigPath.ReadOnly = true;
-            this.txtNuGetConfigPath.Size = new System.Drawing.Size(601, 23);
-            this.txtNuGetConfigPath.TabIndex = 1;
+            txtNuGetConfigPath.Dock = DockStyle.Fill;
+            txtNuGetConfigPath.Location = new Point(125, 3);
+            txtNuGetConfigPath.Name = "txtNuGetConfigPath";
+            txtNuGetConfigPath.ReadOnly = true;
+            txtNuGetConfigPath.Size = new Size(530, 23);
+            txtNuGetConfigPath.TabIndex = 1;
             // 
             // nuGetFeedBrowserControl
             // 
-            this.nuGetFeedBrowserControl.AutoSize = true;
-            this.nuGetFeedBrowserControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.SetColumnSpan(this.nuGetFeedBrowserControl, 3);
-            this.nuGetFeedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nuGetFeedBrowserControl.Enabled = false;
-            this.nuGetFeedBrowserControl.Location = new System.Drawing.Point(3, 34);
-            this.nuGetFeedBrowserControl.Name = "nuGetFeedBrowserControl";
-            this.nuGetFeedBrowserControl.Size = new System.Drawing.Size(755, 487);
-            this.nuGetFeedBrowserControl.TabIndex = 3;
+            nuGetFeedBrowserControl.AutoSize = true;
+            nuGetFeedBrowserControl.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableLayoutPanel1.SetColumnSpan(nuGetFeedBrowserControl, 4);
+            nuGetFeedBrowserControl.Dock = DockStyle.Fill;
+            nuGetFeedBrowserControl.Enabled = false;
+            nuGetFeedBrowserControl.Location = new Point(3, 34);
+            nuGetFeedBrowserControl.Name = "nuGetFeedBrowserControl";
+            nuGetFeedBrowserControl.Size = new Size(755, 487);
+            nuGetFeedBrowserControl.TabIndex = 4;
+            // 
+            // btnExtractPat
+            // 
+            btnExtractPat.AutoSize = true;
+            btnExtractPat.Location = new Point(693, 3);
+            btnExtractPat.Name = "btnExtractPat";
+            btnExtractPat.Size = new Size(65, 25);
+            btnExtractPat.TabIndex = 3;
+            btnExtractPat.Text = "Load PAT";
+            btnExtractPat.UseVisualStyleBackColor = true;
+            btnExtractPat.Click += btnExtractPat_Click;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(777, 540);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.DoubleBuffered = true;
-            this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(8);
-            this.Text = "DevDiv NuGet Feed Browser";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(777, 540);
+            Controls.Add(tableLayoutPanel1);
+            DoubleBuffered = true;
+            Name = "MainForm";
+            Padding = new Padding(8);
+            Text = "DevDiv NuGet Feed Browser";
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -122,6 +135,7 @@
         private Label lblNuGetConfigPath;
         private TextBox txtNuGetConfigPath;
         private NuGetFeedBrowserControl nuGetFeedBrowserControl;
+        private Button btnExtractPat;
     }
 }
 

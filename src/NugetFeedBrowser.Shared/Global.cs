@@ -3,7 +3,12 @@
 
 namespace NugetFeedBrowser.Shared;
 
-internal static class Global
+public static class Global
 {
     internal static HttpClient HttpClient { get; } = new();
+
+    public static void SetAccessToken(string? accessToken)
+    {
+        HttpClient.DefaultRequestHeaders.Authorization = new("Bearer", accessToken);
+    }
 }
