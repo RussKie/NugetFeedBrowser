@@ -53,7 +53,8 @@ public class NugetConfigParser
         }
         catch (HttpRequestException ex)
         {
-            Debug.WriteLine(ex.Message);
+            nugetFeed.ErrorMessage = ex.Message;
+            nugetFeed.IsSupported = false;
             return;
         }
 

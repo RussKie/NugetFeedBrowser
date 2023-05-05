@@ -143,7 +143,7 @@ namespace NugetFeedBrowser
         {
             Global.SetAccessToken(null);
 
-            ExecutionResult? executionResult = default;
+            ExecutionResult? executionResult;
             try
             {
                 Executable azureClient = new("az.bat");

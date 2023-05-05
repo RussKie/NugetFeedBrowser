@@ -72,6 +72,11 @@ namespace NugetFeedBrowser
                     Tag = feedDefinition
                 };
                 lvSearchResults.Groups.Add(group);
+
+                if (feedDefinition.ErrorMessage is not null)
+                {
+                    group.Subtitle = feedDefinition.ErrorMessage;
+                }
             }
 
             Reset();
@@ -93,7 +98,14 @@ namespace NugetFeedBrowser
 
                 if (feedDefinition.IsSupported)
                 {
-                    group.Subtitle = "0 packages";
+                    if (feedDefinition.ErrorMessage is not null)
+                    {
+                        group.Subtitle = feedDefinition.ErrorMessage;
+                    }
+                    else
+                    {
+                        group.Subtitle = "0 packages";
+                    }
                 }
 
                 ListViewItem empty = new()
@@ -121,7 +133,7 @@ namespace NugetFeedBrowser
             NuGetSearch s = new();
             foreach (ListViewGroup group in lvSearchResults.Groups)
             {
-                if (group.Tag is not NugetFeedDefinition feedDefinition)
+                if (group.Tag is not NugetFeedDefinition feedDefinition || !feedDefinition.IsSupported)
                 {
                     continue;
                 }

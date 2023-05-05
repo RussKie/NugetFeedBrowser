@@ -18,4 +18,9 @@ public record NugetFeedDefinition
 
     public string? SearchQueryServiceEndpoint { get; set; }
     public string? WebGalleryUri { get; set; }
+
+    /// <summary>
+    ///  The error message that may have been received while retrieving the feed information.
+    /// </summary>
+    public string? ErrorMessage { get; set; }
 }
