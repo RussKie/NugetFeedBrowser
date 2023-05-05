@@ -275,5 +275,13 @@ namespace NugetFeedBrowser
         {
             HoveredItem = lvSearchResults.GetItemAt(e.X, e.Y);
         }
+
+        private void txtNuGetPackageName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSearch.PerformClick();
+            }
+        }
     }
 }

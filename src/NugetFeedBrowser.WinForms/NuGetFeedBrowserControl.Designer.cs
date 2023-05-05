@@ -41,11 +41,13 @@ namespace NugetFeedBrowser
             // 
             // txtNuGetPackageName
             // 
+            this.txtNuGetPackageName.AcceptsReturn = true;
             this.txtNuGetPackageName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNuGetPackageName.Location = new System.Drawing.Point(97, 3);
             this.txtNuGetPackageName.Name = "txtNuGetPackageName";
             this.txtNuGetPackageName.Size = new System.Drawing.Size(620, 23);
             this.txtNuGetPackageName.TabIndex = 1;
+            this.txtNuGetPackageName.KeyPress += txtNuGetPackageName_KeyPress;
             // 
             // tableLayoutPanel1
             // 
