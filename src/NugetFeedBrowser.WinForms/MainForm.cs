@@ -92,9 +92,31 @@ namespace NugetFeedBrowser
             }
         }
 
-        private void tsbtnRefresh_Click(object sender, EventArgs e)
+        private async Task LoadFeedsAsync(string nugetConfig)
         {
-            //await BindSubscriptionsAsync(forceReload: true);
+            IReadOnlyList<NugetFeedDefinition>? nugetFeedDefinitions = null;
+            await InvokeAsync(nuGetFeedBrowserControl,
+                async () =>
+                {
+                    nuGetFeedBrowserControl.Invoke(() =>
+                    {
+                        nuGetFeedBrowserControl.Enabled = false;
+                    });
+
+                    nugetFeedDefinitions = await s_nugetConfigParser.LoadAsync(nugetConfig);
+                },
+                () =>
+                {
+                    nuGetFeedBrowserControl.Invoke(() =>
+                    {
+                        nuGetFeedBrowserControl.BindFeeds(nugetFeedDefinitions);
+
+                        if (nugetFeedDefinitions is not null)
+                        {
+                            nuGetFeedBrowserControl.Enabled = true;
+                        }
+                    });
+                });
         }
 
         private async void btnNuGetConfigBrowse_Click(object sender, EventArgs e)
@@ -114,30 +136,7 @@ namespace NugetFeedBrowser
             }
 
             txtNuGetConfigPath.Text = dialog.FileName;
-
-            IReadOnlyList<NugetFeedDefinition>? nugetFeedDefinitions = null;
-            await InvokeAsync(nuGetFeedBrowserControl,
-                async () =>
-                {
-                    nuGetFeedBrowserControl.Invoke(() =>
-                    {
-                        nuGetFeedBrowserControl.Enabled = false;
-                    });
-
-                    nugetFeedDefinitions = await s_nugetConfigParser.LoadAsync(dialog.FileName);
-                },
-                () =>
-                {
-                    nuGetFeedBrowserControl.Invoke(() =>
-                    {
-                        nuGetFeedBrowserControl.BindFeeds(nugetFeedDefinitions);
-
-                        if (nugetFeedDefinitions is not null)
-                        {
-                            nuGetFeedBrowserControl.Enabled = true;
-                        }
-                    });
-                });
+            await LoadFeedsAsync(dialog.FileName);
         }
 
         private async void btnExtractPat_Click(object sender, EventArgs e)
@@ -164,6 +163,11 @@ namespace NugetFeedBrowser
 
             AzAccessToken descriptor = JsonConvert.DeserializeObject<AzAccessToken>(executionResult.Output)!;
             Global.SetAccessToken(descriptor.AccessToken);
+
+            if (!string.IsNullOrEmpty(descriptor.AccessToken))
+            {
+                await LoadFeedsAsync(txtNuGetConfigPath.Text);
+            }
         }
 
         private record AzAccessToken
