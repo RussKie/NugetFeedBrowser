@@ -57,6 +57,12 @@ public class NugetConfigParser
             nugetFeed.IsSupported = false;
             return;
         }
+        catch (NotSupportedException ex)
+        {
+            nugetFeed.ErrorMessage = ex.Message;
+            nugetFeed.IsSupported = false;
+            return;
+        }
 
         if (responseBody.StartsWith("<?xml"))
         {
