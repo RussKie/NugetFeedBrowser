@@ -73,6 +73,7 @@ public class NugetConfigParser
 
         // AzDO
         string? vssBaseUrl = descriptor.Resources.FirstOrDefault(x => x.Type.StartsWith("VssBaseUrl"))?.Id;
+        string vssFeedId = descriptor.Resources.FirstOrDefault(x => x.Type.StartsWith("VssFeedId"))?.Label ?? nugetFeed.Name;
         string? azureDevOpsProjectId = descriptor.Resources.FirstOrDefault(x => x.Type.StartsWith("AzureDevOpsProjectId"))?.Label;
 
         // NuGet
@@ -82,10 +83,10 @@ public class NugetConfigParser
         {
             nugetFeed.WebGalleryUri = packageDetailsUriTemplate.Replace("{id}", "{0}").Replace("{version}", "{1}").Replace("?_src=template", "");
         }
-        else if (!string.IsNullOrWhiteSpace(vssBaseUrl) && !string.IsNullOrWhiteSpace(azureDevOpsProjectId))
+        else if (!string.IsNullOrWhiteSpace(vssBaseUrl))
         {
             // HACK: DevDiv specific??
-            nugetFeed.WebGalleryUri = $"{PerformUrlSubstitutions(vssBaseUrl)}{azureDevOpsProjectId}/_artifacts/feed/{nugetFeed.Name}/NuGet/{{0}}/overview/{{1}}/";
+            nugetFeed.WebGalleryUri = $"{PerformUrlSubstitutions(vssBaseUrl)}{azureDevOpsProjectId}/_artifacts/feed/{vssFeedId}/NuGet/{{0}}/overview/{{1}}/";
         }
         else
         {
@@ -97,5 +98,6 @@ public class NugetConfigParser
     private static string PerformUrlSubstitutions(string url)
         => url
             .Replace("pkgs.dev.azure.com", "dev.azure.com")
-            .Replace("dnceng.pkgs.visualstudio.com", "dev.azure.com/dnceng");
+            .Replace("dnceng.pkgs.visualstudio.com", "dev.azure.com/dnceng")
+            .Replace("devdiv.pkgs.visualstudio.com", "dev.azure.com/devdiv");
 }
