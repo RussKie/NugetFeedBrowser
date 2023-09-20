@@ -122,36 +122,45 @@ namespace NugetFeedBrowser
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            Reset();
-
-            if (string.IsNullOrWhiteSpace(txtNuGetPackageName.Text))
+            try
             {
-                return;
-            }
+                Enabled = false;
 
-            List<Task> tasks = new();
-            NuGetSearch s = new();
-            foreach (ListViewGroup group in lvSearchResults.Groups)
-            {
-                if (group.Tag is not NugetFeedDefinition feedDefinition || !feedDefinition.IsSupported)
+                Reset();
+
+                if (string.IsNullOrWhiteSpace(txtNuGetPackageName.Text))
                 {
-                    continue;
+                    return;
                 }
 
-                tasks.Add(DisplaySearchResultsAsync(feedDefinition, txtNuGetPackageName.Text, group));
-            }
+                List<Task> tasks = new();
+                NuGetSearch s = new();
+                foreach (ListViewGroup group in lvSearchResults.Groups)
+                {
+                    if (group.Tag is not NugetFeedDefinition feedDefinition || !feedDefinition.IsSupported)
+                    {
+                        continue;
+                    }
 
-            lvSearchResults.BeginUpdate();
-            await Task.WhenAll(tasks);
-            lvSearchResults.EndUpdate();
+                    tasks.Add(DisplaySearchResultsAsync(s, feedDefinition, txtNuGetPackageName.Text, group));
+                }
+
+                lvSearchResults.BeginUpdate();
+                await Task.WhenAll(tasks);
+                lvSearchResults.EndUpdate();
+            }
+            finally
+            {
+                Enabled = true;
+            }
 
             return;
 
-            Task DisplaySearchResultsAsync(NugetFeedDefinition nugetFeed, string filter, ListViewGroup group)
+            Task DisplaySearchResultsAsync(NuGetSearch nuGetSearch, NugetFeedDefinition nugetFeed, string filter, ListViewGroup group)
             {
                 return Task.Run(async () =>
                 {
-                    IReadOnlyList<PackageDataDescriptor> results = await s.FindPackageAsync(nugetFeed, txtNuGetPackageName.Text);
+                    IReadOnlyList<PackageDataDescriptor> results = await nuGetSearch.FindPackageAsync(nugetFeed, txtNuGetPackageName.Text);
 
                     lvSearchResults.Invoke(() =>
                     {

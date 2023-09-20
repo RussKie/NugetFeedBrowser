@@ -94,6 +94,11 @@ namespace NugetFeedBrowser
 
         private async Task LoadFeedsAsync(string nugetConfig)
         {
+            if (string.IsNullOrEmpty(nugetConfig))
+            {
+                return;
+            }
+
             IReadOnlyList<NugetFeedDefinition>? nugetFeedDefinitions = null;
             await InvokeAsync(nuGetFeedBrowserControl,
                 async () =>

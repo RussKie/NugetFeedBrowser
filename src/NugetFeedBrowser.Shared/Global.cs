@@ -5,7 +5,11 @@ namespace NugetFeedBrowser.Shared;
 
 public static class Global
 {
-    internal static HttpClient HttpClient { get; } = new();
+    internal static HttpClient HttpClient { get; }
+        = new()
+        {
+            Timeout = TimeSpan.FromMinutes(3)
+        };
 
     public static void SetAccessToken(string? accessToken)
     {

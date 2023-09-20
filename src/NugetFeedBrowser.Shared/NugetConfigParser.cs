@@ -92,7 +92,8 @@ public class NugetConfigParser
         else if (!string.IsNullOrWhiteSpace(vssBaseUrl))
         {
             // HACK: DevDiv specific??
-            nugetFeed.WebGalleryUri = $"{PerformUrlSubstitutions(vssBaseUrl)}{azureDevOpsProjectId}/_artifacts/feed/{vssFeedId}/NuGet/{{0}}/overview/{{1}}/";
+            nugetFeed.WebGalleryUri = $"{PerformUrlSubstitutions(vssBaseUrl)}{azureDevOpsProjectId}/_artifacts/feed/{vssFeedId}/NuGet/{{0}}/overview/{{1}}/"
+                                        .Replace("//", "/");
         }
         else
         {
@@ -105,5 +106,6 @@ public class NugetConfigParser
         => url
             .Replace("pkgs.dev.azure.com", "dev.azure.com")
             .Replace("dnceng.pkgs.visualstudio.com", "dev.azure.com/dnceng")
-            .Replace("devdiv.pkgs.visualstudio.com", "dev.azure.com/devdiv");
+            .Replace("devdiv.pkgs.visualstudio.com", "dev.azure.com/devdiv")
+            .Replace("skype.pkgs.visualstudio.com", "dev.azure.com/skype/ES");
 }
